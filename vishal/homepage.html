@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Document</title>
+    <style>
+        #navbar{
+            display:flex;
+            justify-content: space-between;
+
+
+
+        }
+        h2{
+
+            text-align: center;
+
+
+
+        }
+        
+
+
+
+         * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(248, 246, 246);
+}
+/* Navbar related css */
+
+#links {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1%;
+  box-shadow: 2px 2px 5px 5px rgb(235, 235, 235);
+}
+
+#links > div {
+  display: flex;
+  list-style: none;
+}
+#links a {
+  text-decoration: none;
+  color: teal;
+  font-size: 30px;
+}
+#submit {
+  width: 70%;
+  margin: auto;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 15px;
+}
+/* Navbar related css */
+
+/* Form related css */
+
+input,
+select {
+  display: block;
+  margin: 15px 0px;
+  font-size: 20px;
+  padding: 2%;
+}
+option {
+  font-size: 25px;
+}
+form {
+  width: 400px;
+  border: 1px solid rgb(230, 230, 230);
+  margin: 3% auto;
+  padding: 3%;
+  background: white;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <div id="navbar">
+ 
+
+
+    </div>
+    <button>
+        <a href="dashbord.html">dashbord</a>
+    
+        </button>
+    <h2 >Masai Students Data</h2>
+    <form>
+        <input id="name" placeholder="full name" type="text">
+        <input id="course" placeholder="course" type="text">
+        <input id="unit" placeholder="unit" type="number">
+        <input id="image" placeholder="image" type="text">
+        <input id="batch" placeholder="batch" type="text">
+        
+        
+       <button class="abc"> <input type="submit" values="Submit"></button>
+        
+        
+        
+   
+   
+   
+   
+   
+   
+   
+    </form>
+        
+        
+        
+   
+   
+   
+   
+   
+   
+   
+    
+
+
+    
+</body>
+</html>
+<script>
+
+var form=document.querySelector("form");
+form.addEventListener("submit",function(event){
+event.preventDefault();
+let name=form.name.value;
+
+let course=form.course.value;
+let unit=form.unit.value;
+let image=form.image.value;
+let batch=form.batch.value;
+
+let s1=new Student(name,course,unit,image,batch)
+let data=JSON.parse(localStorage.getItem('students')) || [];
+data.push(s1)
+localStorage.setItem('students',JSON.stringify(data))
+console.log(s1)
+
+})
+
+
+function Student(n,c,u,i,b){
+
+this.name=n;
+this.course=c;
+this.unit=u;
+this.image=i;
+this.batch=b;
+
+
+
+
+
+
+}
+
+var obj={};
+function calculate()
+{
+    let data=JSON.parse(localStorage.getItem('students'))||[];
+    
+    for(let i=0;i<data.length;i++)
+    {
+        if(!obj[data[i].batch])
+        {
+
+            obj[data[i].batch]=0;
+
+        }
+    }
+
+
+
+
+for(let i=0;i<data.length;i++)
+    {
+        
+        
+
+            obj[data[i].batch]++;
+
+        
+    }
+    
+}
+ calculate()
+
+ var navbar=document.querySelector("#navbar")
+
+ for(var z in obj){
+
+    var title=document.createElement("h2");
+    title.textContent=z;
+    var title1=document.createElement("h2");
+    title1.textContent=obj[z];
+
+    navbar.append(title,title1);
+
+
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

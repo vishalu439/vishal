@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+   #container{
+            display:grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: repeat(auto,auto);
+
+
+
+
+        }
+        img{
+            width:20%;
+
+
+
+
+
+        }
+        #totalamount{
+            color: blueviolet;
+            display: flex;
+            justify-content: space-between;
+            font-size: larger;
+
+
+
+
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <a href="checkout.html">checkout</a>
+    <div id="totalamount">total amount</div>
+    <div id="container">
+
+
+
+
+    </div>
+    
+</body>
+</html>
+<script>
+
+
+
+
+
+
+function append(){
+    var x=JSON.parse(localStorage.getItem("coffee"))||[]
+    container=document.getElementById("container")
+    totalamount=document.getElementById("totalamount")
+    container.innerHTML=null;
+    totalamount.innerHTML=null;
+
+    x.forEach((ele,i) => {
+        
+
+    div=document.createElement("div")
+    image=document.createElement("img")
+    image.src=ele.image
+    p1=document.createElement("p")
+    p1.innerText=ele.title
+    p2=document.createElement("p")
+    p2.innerText=ele.price
+    button=document.createElement("button")
+    button.innerText="remove"
+    button.addEventListener("click",function(){
+
+    remove(i)
+
+
+    })
+
+
+    div.append(image,p1,p2,button)
+    container.append(div)
+
+
+
+        
+    });
+
+  sum=0
+   k= x.reduce(function(ele,i){
+
+
+       return ele+i.price
+
+
+
+
+
+
+   },0)
+
+totalamount.append(k)
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+append()
+
+
+
+
+function remove(i){
+    var x=JSON.parse(localStorage.getItem("coffee"))||[]
+
+    newdata=x.filter( function(element,index){
+
+
+   return index!==i;
+
+
+
+
+
+
+
+    })
+    console.log(newdata)
+
+
+    localStorage.setItem("coffee",JSON.stringify(newdata));
+    append()
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

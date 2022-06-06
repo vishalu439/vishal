@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+    <style>
+        #container{
+            display:grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: repeat(auto,auto);
+
+
+
+
+        }
+        img{
+            width:20%;
+
+
+
+
+
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <a href="y.html">bucket</a>
+    <div id="container">
+
+
+
+    </div>
+    
+</body>
+</html>
+
+<script>
+ 
+
+async function k(){
+    var url="https://masai-mock-api.herokuapp.com/coffee/menu";
+
+res=await fetch(url);
+data=await res.json()
+
+
+
+append(data.menu.data)
+
+}
+k()
+
+
+function append(data){
+
+container=document.getElementById("container")
+
+data.forEach(ele => {
+
+    div=document.createElement('div')
+    image=document.createElement("img")
+    image.src=ele.image
+    p1=document.createElement("p")
+    p1.innerText=ele.title
+    p2=document.createElement("p")
+    p2.innerText=ele.title
+    button=document.createElement("button")
+    button.innerText="add to bucket"
+    button.addEventListener("click",function(){
+
+
+   cart(ele)
+
+
+    })
+    div.append(image,p1,p2,button)
+    container.append(div)
+    
+});
+
+
+
+
+}
+var x=JSON.parse(localStorage.getItem("coffee"))||[]
+//added=localStorage.setItem("coffee",JSON.stringify()) || []
+//x=[]
+
+function cart(ele){
+    
+   // x=JSON.parse(localStorage.getItem("coffee")) || []
+    
+    x.push(ele)
+    console.log(x)
+    localStorage.setItem("coffee",JSON.stringify(x)) 
+    
+    
+
+    
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+</script>
